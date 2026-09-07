@@ -1,0 +1,733 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ท่องเที่ยวสุรินทร์ - ตัวมัมตัวแดน Vibe ดีมวลรวม 10/10 ✨💖</title>
+<link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+  :root { 
+    --primary: #ff758c;          /* ชมพูนีออนสดใส */
+    --primary-glow: rgba(255, 117, 140, 0.4);
+    --secondary: #ff7eb3;        /* ชมพูพาสเทล */
+    --accent: #ffb199;           /* ส้มพาสเทล Vibe พระอาทิตย์ตก */
+    --bg-dark: #0b0a10;          /* ดำอมมุก */
+    --card-bg: rgba(26, 24, 38, 0.65); /* Glassmorphism */
+    --card-border: rgba(255, 255, 255, 0.12);
+    --text-main: #ffffff;
+    --text-muted: #b8b9cb;
+    --radius: 24px;
+    --transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  } 
+  
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body { 
+    font-family: 'Prompt', sans-serif; 
+    background-color: var(--bg-dark); 
+    color: var(--text-main); 
+    line-height: 1.6; 
+    position: relative;
+    overflow-x: hidden;
+    background-image: 
+      radial-gradient(circle at 10% 20%, rgba(255, 117, 140, 0.18) 0%, transparent 40%),
+      radial-gradient(circle at 90% 80%, rgba(123, 97, 255, 0.15) 0%, transparent 45%);
+    background-attachment: fixed;
+  }
+
+  /* Canvas Particle Effect */
+  #mist-canvas {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100vw; height: 100vh;
+    pointer-events: none;
+    z-index: 1;
+    opacity: 0.9;
+  }
+
+  /* Hero Section */
+  .hero { 
+    height: 60vh; 
+    min-height: 420px;
+    background: linear-gradient(180deg, rgba(11,10,16,0.3) 0%, rgba(11,10,16,0.98) 100%), 
+                url('https://images.unsplash.com/photo-1596422846543-75c6fc197f07?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat; 
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    text-align: center;
+    padding: 20px;
+    position: relative;
+    z-index: 2;
+    border-bottom: 1px solid var(--card-border);
+  }
+  .hero-content { max-width: 800px; }
+  .hero-badge {
+    display: inline-block;
+    background: rgba(255, 117, 140, 0.15);
+    border: 1px solid var(--primary);
+    color: var(--primary);
+    padding: 6px 20px;
+    border-radius: 50px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    margin-bottom: 15px;
+    backdrop-filter: blur(8px);
+    box-shadow: 0 0 15px var(--primary-glow);
+  }
+ .hero h1 { 
+  font-size: 2.8rem; 
+  font-weight: 700; 
+  margin-bottom: 12px;
+  background: linear-gradient(135deg, #ffffff 30%, #FF3366 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  letter-spacing: -0.5px;
+}
+  .hero p { 
+    font-size: 1.1rem; 
+    color: var(--text-muted); 
+    font-weight: 300; 
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  /* Sticky Navbar */
+  .navbar {
+    background: rgba(11, 10, 16, 0.75);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    padding: 14px 20px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    border-bottom: 1px solid var(--card-border);
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+  .navbar a {
+    color: var(--text-muted);
+    text-decoration: none;
+    padding: 8px 18px;
+    font-weight: 500;
+    font-size: 0.9rem;
+    border-radius: 50px;
+    transition: var(--transition);
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .navbar a:hover, .navbar a.active { 
+    background: rgba(255, 255, 255, 0.08);
+    color: #fff;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    transform: translateY(-2px);
+  }
+  .navbar a i { color: var(--primary); }
+
+  /* Container & Section Header */
+  .container { max-width: 1200px; margin: 40px auto; padding: 0 20px; position: relative; z-index: 2; }
+  
+  .section-heading {
+    text-align: center;
+    color: #ffffff;
+    font-size: 2.2rem;
+    font-weight: 700;
+    margin-bottom: 35px;
+  }
+  .section-heading span {
+  background: linear-gradient(90deg, #FF3366, #FF6B00);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+  .section-subtitle {
+    display: block;
+    font-size: 0.95rem;
+    color: var(--text-muted);
+    font-weight: 300;
+    margin-top: 5px;
+  }
+
+  /* Grid Layout */
+  .places-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(330px, 1fr));
+    gap: 28px;
+  }
+
+  /* Glassmorphism Card Design */
+  .place-card {
+    background: var(--card-bg);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-radius: var(--radius);
+    overflow: hidden;
+    border: 1px solid var(--card-border);
+    transition: var(--transition);
+    display: flex;
+    flex-direction: column;
+    position: relative;
+  }
+  .place-card:hover { 
+    transform: translateY(-8px) scale(1.01);
+    border-color: rgba(255, 117, 140, 0.5);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6), 0 0 25px rgba(255, 117, 140, 0.2);
+  }
+
+  /* Image Container */
+  .place-img-container {
+    width: 100%;
+    height: 230px;
+    overflow: hidden;
+    position: relative;
+    cursor: pointer;
+  }
+  .place-badge {
+    position: absolute;
+    top: 15px; left: 15px;
+    background: rgba(11, 10, 16, 0.75);
+    backdrop-filter: blur(10px);
+    color: #fff;
+    padding: 6px 14px;
+    font-weight: 500;
+    font-size: 0.78rem;
+    border-radius: 50px;
+    z-index: 10;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .place-badge i { color: var(--primary); }
+  .place-img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+  }
+  .place-card:hover .place-img { transform: scale(1.08); }
+
+  /* Content Body */
+  .place-body {
+    padding: 22px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+  }
+  .place-title { 
+    color: #ffffff; 
+    font-size: 1.3rem; 
+    margin-bottom: 8px; 
+    font-weight: 600; 
+  }
+
+  /* Tag Chips */
+  .tag-chips {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+    margin-bottom: 12px;
+  }
+  .chip {
+    font-size: 0.72rem;
+    padding: 3px 10px;
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.06);
+    color: var(--accent);
+    border: 1px solid rgba(255, 177, 153, 0.2);
+  }
+
+  .place-desc { 
+    color: var(--text-muted); 
+    font-size: 0.9rem; 
+    margin-bottom: 15px; 
+    font-weight: 300; 
+    line-height: 1.6;
+  }
+  
+  .place-recommendation {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px dashed rgba(255, 117, 140, 0.3);
+    padding: 10px 14px;
+    border-radius: 14px;
+    font-size: 0.85rem;
+    color: #ececff;
+    margin-top: auto;
+    margin-bottom: 15px;
+  }
+  .place-recommendation strong { color: var(--primary); }
+
+  /* Interaction Bar */
+  .interaction-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 14px 22px;
+    border-top: 1px solid var(--card-border);
+    background: rgba(0, 0, 0, 0.2);
+  }
+  .action-btn {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    font-weight: 500;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    border-radius: 50px;
+    transition: var(--transition);
+    font-family: 'Prompt', sans-serif;
+  }
+  .action-btn:hover { 
+    background: var(--primary);
+    color: #fff;
+    border-color: var(--primary);
+    box-shadow: 0 0 15px var(--primary-glow);
+  }
+  .action-btn.liked { 
+    background: rgba(255, 117, 140, 0.2);
+    color: var(--primary);
+    border-color: var(--primary);
+    animation: pop 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  }
+
+  @keyframes pop {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+    100% { transform: scale(1); }
+  }
+
+  /* Lightbox Modal */
+  .lightbox-modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background-color: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(12px);
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+  }
+  .lightbox-content {
+    max-width: 90%;
+    max-height: 80vh;
+    border-radius: var(--radius);
+    box-shadow: 0 0 40px rgba(255, 117, 140, 0.3);
+    border: 1px solid var(--card-border);
+  }
+  .lightbox-close {
+    position: absolute;
+    top: 25px; right: 35px;
+    color: #fff; font-size: 2.2rem;
+    cursor: pointer;
+  }
+
+  /* Toast Notification */
+  .toast {
+    visibility: hidden;
+    position: fixed;
+    bottom: 30px; left: 50%;
+    transform: translateX(-50%);
+    background: rgba(26, 24, 38, 0.9);
+    backdrop-filter: blur(10px);
+    color: #fff;
+    padding: 12px 28px;
+    border-radius: 50px;
+    font-size: 0.88rem;
+    z-index: 1000;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.8);
+    transition: all 0.3s ease;
+    opacity: 0;
+    border: 1px solid var(--primary);
+  }
+  .toast i { color: var(--primary); margin-right: 6px; }
+  .toast.show { visibility: visible; opacity: 1; transform: translateX(-50%) translateY(-5px); }
+
+  /* Footer */
+  .footer-container {
+    background: rgba(5, 4, 8, 0.95);
+    padding: 50px 20px;
+    text-align: center;
+    border-top: 1px solid var(--card-border);
+    margin-top: 80px;
+    position: relative;
+    z-index: 2;
+  }
+.footer-title { 
+  font-size: 1.3rem; 
+  font-weight: 600; 
+  margin-bottom: 6px; 
+  background: linear-gradient(90deg, #FF3366, #FF6B00);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+  .footer-subtitle { font-size: 0.9rem; color: var(--text-muted); margin-bottom: 25px; }
+  .contact-grid { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; max-width: 800px; margin: 0 auto 30px; }
+  .contact-btn {
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid var(--card-border);
+    color: var(--text-main);
+    padding: 10px 20px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-size: 0.88rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: var(--transition);
+  }
+  .contact-btn:hover { 
+    background: rgba(255, 255, 255, 0.1);
+    border-color: var(--primary);
+    transform: translateY(-3px);
+    color: #fff;
+    box-shadow: 0 0 15px var(--primary-glow);
+  }
+  .contact-btn i { color: var(--primary); }
+  .footer-copy { font-size: 0.85rem; color: var(--text-muted); margin: 0; border-top: 1px solid rgba(255, 255, 255, 0.05); padding-top: 22px; font-weight: 300; }
+
+  @media (max-width: 768px) {
+    .hero h1 { font-size: 2.1rem; }
+    .navbar a { padding: 6px 12px; font-size: 0.82rem; }
+    .places-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Ambient Fog Canvas -->
+<canvas id="mist-canvas"></canvas>
+
+<header class="hero">
+  <div class="hero-content">
+    <div class="hero-badge">✨ SURIN TRAVEL VIBES</div>
+    <h1>เช็กอินถิ่นตัวแม่ สุรินทร์มีดีกว่าที่คิด!</h1>
+    <p>สัมผัสอารยธรรมขอมโบราณสุดคลาสสิก พร้อมมู้ดเช็กอินเก๋ๆ ถ่ายรูปปัง 10/10 📸</p>
+  </div>
+</header>
+
+<nav class="navbar">
+  <a href="webste-2.html"><i class="fas fa-sparkles"></i> หน้าแรก</a>
+  <a href="teepak-1.html"><i class="fas fa-bed"></i> ที่พัก</a>
+  <a href="food-1.html"><i class="fas fa-utensils"></i> กินไรดี</a>
+  <a href="travel-1.html" class="active"><i class="fas fa-camera"></i> ที่เที่ยว</a>
+  <a href="contact-2.html"><i class="fas fa-paper-plane"></i> คอนแทค</a>
+</nav>
+
+<div class="container">
+  <div class="section-heading">
+    <span>Must-Visit Spots</span> 🔥
+    <span class="section-subtitle">พิกัดหมุดฮิต ตัวมัมต้องไปเช็กอิน</span>
+  </div>
+
+  <div class="places-grid">
+
+    <!-- 1. ปราสาทศีขรภูมิ -->
+    <article class="place-card">
+      <div class="place-badge"><i class="fas fa-gem"></i> อารยธรรมขอมสุดต๊าช</div>
+      <div class="place-img-container" onclick="openLightbox(this)">
+        <img src="d:\อรปรียา นาคำสี\images.jpg" alt="ปราสาทศีขรภูมิ" class="place-img">
+      </div>
+      <div class="place-body">
+        <h2 class="place-title">ปราสาทศีขรภูมิ</h2>
+        <div class="tag-chips">
+          <span class="chip">#นางอัปสราหนึ่งเดียว</span>
+          <span class="chip">#แสงเย็นดีมาก</span>
+          <span class="chip">#ประวัติศาสตร์900ปี</span>
+        </div>
+        <p class="place-desc">
+          ปรางค์อิฐโบราณ 5 องค์สุดประณีต ไฮไลท์คือภาพสลัก "นางอัปสราถือดอกบัว" สมบูรณ์สวยที่สุดในไทย มู้ดถ่ายรูปแสงเย็นคือฟีลลิ่งวินเทจคลาสสิกมาก!
+        </p>
+        <div class="place-recommendation">
+          <strong>Highlight:</strong> แนะนำมาช่วง 16.30 น. แสงอาทิตย์ตกกระทบหินทราย ถ่ายรูปแล้วออร่าพุ่ง
+        </div>
+      </div>
+      <div class="interaction-bar">
+        <button class="action-btn" onclick="toggleLike(this, 'like-count-1')"><i class="far fa-heart"></i> <span id="like-count-1">320</span></button>
+        <button class="action-btn" onclick="sharePost()"><i class="far fa-paper-plane"></i> แชร์</button>
+      </div>
+    </article>
+
+    <!-- 2. หมู่บ้านช้าง บ้านตากลาง -->
+    <article class="place-card">
+      <div class="place-badge"><i class="fas fa-heart"></i> ฟีลลิ่งฮีลใจ</div>
+      <div class="place-img-container" onclick="openLightbox(this)">
+        <img src="d:\อรปรียา นาคำสี\images (34).jpg" alt="หมู่บ้านช้าง บ้านตากลาง" class="place-img">
+      </div>
+      <div class="place-body">
+        <h2 class="place-title">หมู่บ้านช้าง บ้านตากลาง</h2>
+        <div class="tag-chips">
+          <span class="chip">#หมู่บ้านช้างใหญ่ที่สุดในโลก</span>
+          <span class="chip">#วิถีชาวกูย</span>
+          <span class="chip">#น่ารักอบอุ่น</span>
+        </div>
+        <p class="place-desc">
+          สัมผัสความอบอุ่นของชาวกูยที่เลี้ยงน้องช้างแบบสมาชิกในครอบครัว ไม่ได้ล่ามกรง ชมความน่ารักตอนน้องๆ ลงเล่นน้ำในแม่น้ำมูล ฟีลฮีลใจขั้นสุด!
+        </p>
+        <div class="place-recommendation">
+          <strong>Highlight:</strong> ตื่นมาตักบาตรยามเช้าพร้อมน้องช้าง ภาพประทับใจระดับสิบ!
+        </div>
+      </div>
+      <div class="interaction-bar">
+        <button class="action-btn" onclick="toggleLike(this, 'like-count-2')"><i class="far fa-heart"></i> <span id="like-count-2">540</span></button>
+        <button class="action-btn" onclick="sharePost()"><i class="far fa-paper-plane"></i> แชร์</button>
+      </div>
+    </article>
+
+    <!-- 3. วนอุทยานพนมสวาย -->
+    <article class="place-card">
+      <div class="place-badge"><i class="fas fa-mountain"></i> สายมูสู้ชีวิต</div>
+      <div class="place-img-container" onclick="openLightbox(this)">
+        <img src="d:\อรปรียา นาคำสี\images (33).jpg" alt="วนอุทยานพนมสวาย" class="place-img">
+      </div>
+      <div class="place-body">
+        <h2 class="place-title">วนอุทยานพนมสวาย</h2>
+        <div class="tag-chips">
+          <span class="chip">#เคาะระฆัง1080ใบ</span>
+          <span class="chip">#จุดชมวิว360องศา</span>
+          <span class="chip">#สายมูต้องมา</span>
+        </div>
+        <p class="place-desc">
+          ภูเขาไฟดับแล้วสุดศักดิ์สิทธิ์ มาเดินเคาะระฆัง 1,080 ใบ เอาปังเอาเฮง พร้อมไหว้พระพุทธสุรินทรมงคลบนยอดเขา และรับลมเย็นๆ ฟินๆ
+        </p>
+        <div class="place-recommendation">
+          <strong>Highlight:</strong> เดินเคาะระฆังให้ครบ เสริมปังรับโชคแบบตัวแม่
+        </div>
+      </div>
+      <div class="interaction-bar">
+        <button class="action-btn" onclick="toggleLike(this, 'like-count-5')"><i class="far fa-heart"></i> <span id="like-count-5">385</span></button>
+        <button class="action-btn" onclick="sharePost()"><i class="far fa-paper-plane"></i> แชร์</button>
+      </div>
+    </article>
+
+    <!-- 4. กลุ่มปราสาทตาเมือน -->
+    <article class="place-card">
+      <div class="place-badge"><i class="fas fa-compass"></i> ผจญภัยลับๆ</div>
+      <div class="place-img-container" onclick="openLightbox(this)">
+        <img src="d:\อรปรียา นาคำสี\images (32).jpg" alt="ปราสาทตาเมือนธม" class="place-img">
+      </div>
+      <div class="place-body">
+        <h2 class="place-title">กลุ่มปราสาทตาเมือน</h2>
+        <div class="tag-chips">
+          <span class="chip">#โบราณสถานชายแดน</span>
+          <span class="chip">#ความงามลึกลับ</span>
+          <span class="chip">#ป่าเขาร่มรื่น</span>
+        </div>
+        <p class="place-desc">
+          กลุ่มปราสาทหิน 3 หลังบนเส้นทางโบราณ ท่ามกลางธรรมชาติป่าเขา เงียบสงบ มู้ดเหมือนหลุดเข้าไปในฉากภาพยนตร์ผจญภัย
+        </p>
+        <div class="place-recommendation">
+          <strong>Highlight:</strong> ตัวปราสาทตาเมือนธมคืออลังการ เหมาะกับคนชอบถ่ายรูปมู้ดเท่ๆ
+        </div>
+      </div>
+      <div class="interaction-bar">
+        <button class="action-btn" onclick="toggleLike(this, 'like-count-6')"><i class="far fa-heart"></i> <span id="like-count-6">460</span></button>
+        <button class="action-btn" onclick="sharePost()"><i class="far fa-paper-plane"></i> แชร์</button>
+      </div>
+    </article>
+
+    <!-- 5. ปราสาทหินบ้านพลวง -->
+    <article class="place-card">
+      <div class="place-badge"><i class="fas fa-sparkles"></i> ดีเทลงานคราฟต์</div>
+      <div class="place-img-container" onclick="openLightbox(this)">
+        <img src="d:\อรปรียา นาคำสี\images (31).jpg" alt="ปราสาทหินบ้านพลวง" class="place-img">
+      </div>
+      <div class="place-body">
+        <h2 class="place-title">ปราสาทหินบ้านพลวง</h2>
+        <div class="tag-chips">
+          <span class="chip">#หินทรายชมพู</span>
+          <span class="chip">#งานแกะสลักละเอียด</span>
+        </div>
+        <p class="place-desc">
+          ปราสาทหินทรายสีชมพูน่ารักไซส์มินิ แต่สลักลวดลายละเอียดกริ๊บ! มีลวดลายพระอินทร์ทรงช้างเอราวัณที่ยังคมชัดให้ส่องเน้นๆ
+        </p>
+        <div class="place-recommendation">
+          <strong>Highlight:</strong> บรรยากาศรอบๆ เป็นสวนร่มรื่น มินิมอลและสงบมาก
+        </div>
+      </div>
+      <div class="interaction-bar">
+        <button class="action-btn" onclick="toggleLike(this, 'like-count-3')"><i class="far fa-heart"></i> <span id="like-count-3">215</span></button>
+        <button class="action-btn" onclick="sharePost()"><i class="far fa-paper-plane"></i> แชร์</button>
+      </div>
+    </article>
+
+    <!-- 6. หมู่บ้านผ้าไหมบ้านท่าสว่าง -->
+    <article class="place-card">
+      <div class="place-badge"><i class="fas fa-crown"></i> ความประณีตระดับโลก</div>
+      <div class="place-img-container" onclick="openLightbox(this)">
+        <img src="d:\อรปรียา นาคำสี\images (30).jpg" alt="ผ้าไหมบ้านท่าสว่าง" class="place-img">
+      </div>
+      <div class="place-body">
+        <h2 class="place-title">หมู่บ้านผ้าไหมบ้านท่าสว่าง</h2>
+        <div class="tag-chips">
+          <span class="chip">#ผ้ายกทองโบราณ</span>
+          <span class="chip">#APECวิลเลจ</span>
+          <span class="chip">#ซอฟต์พาวเวอร์</span>
+        </div>
+        <p class="place-desc">
+          แหล่งทอผ้ายกทองโบราณสุดตระการตาที่ใช้คนทอพร้อมกันถึง 4-5 คน งานฝีมือชั้นสูงระดับที่ตัดเย็บให้ผู้นำระดับโลก!
+        </p>
+        <div class="place-recommendation">
+          <strong>Highlight:</strong> ชมการทอผ้าบนกี่ทอใต้ดินของจริง สวยงามประณีตตาแตก
+        </div>
+      </div>
+      <div class="interaction-bar">
+        <button class="action-btn" onclick="toggleLike(this, 'like-count-4')"><i class="far fa-heart"></i> <span id="like-count-4">410</span></button>
+        <button class="action-btn" onclick="sharePost()"><i class="far fa-paper-plane"></i> แชร์</button>
+      </div>
+    </article>
+
+  </div>
+</div>
+
+<!-- Modal Lightbox -->
+<div id="lightboxModal" class="lightbox-modal" onclick="closeLightbox()">
+  <span class="lightbox-close">&times;</span>
+  <img class="lightbox-content" id="lightboxImg">
+</div>
+
+<!-- Toast Notice -->
+<div id="toast" class="toast"><i class="fas fa-check-circle"></i> คัดลอกลิงก์สำเร็จแล้ว พร้อมแชร์ให้เพื่อน!</div>
+
+<footer class="footer-container">
+  <div class="footer-title">✨ TALK WITH US</div>
+  <div class="footer-subtitle">สอบถามข้อมูลเพิ่มเติมหรือตามหาพิกัดเที่ยวสุรินทร์ฉบับอัปเดต</div>
+  
+  <div class="contact-grid">
+    <a href="tel:0982059162" class="contact-btn"><i class="fas fa-phone-alt"></i><span>098-205-9162</span></a>
+    <a href="https://www.instagram.com/kwa.exe__" target="_blank" class="contact-btn"><i class="fab fa-instagram"></i><span>kwa.exe__</span></a>
+    <a href="https://www.facebook.com/" target="_blank" class="contact-btn"><i class="fab fa-facebook"></i><span>Zee Opy</span></a>
+    <a href="https://line.me/ti/p/~@kumi.ko721" target="_blank" class="contact-btn"><i class="fab fa-line"></i><span>@kumi.ko721</span></a>
+  </div>
+
+  <p class="footer-copy">&copy; 2026 SURIN TRAVEL GUIDE. Crafted with ✨ by Orapriya</p>
+</footer>
+
+<script>
+  function openLightbox(container) {
+    const img = container.querySelector('img');
+    const modal = document.getElementById('lightboxModal');
+    const modalImg = document.getElementById('lightboxImg');
+    modal.style.display = "flex";
+    modalImg.src = img.src;
+  }
+
+  function closeLightbox() {
+    document.getElementById('lightboxModal').style.display = "none";
+  }
+
+  function toggleLike(btn, countId) {
+    const icon = btn.querySelector('i');
+    const countSpan = document.getElementById(countId);
+    let count = parseInt(countSpan.innerText);
+
+    if (btn.classList.contains('liked')) {
+      btn.classList.remove('liked');
+      icon.classList.remove('fas');
+      icon.classList.add('far');
+      countSpan.innerText = count - 1;
+    } else {
+      btn.classList.add('liked');
+      icon.classList.remove('far');
+      icon.classList.add('fas');
+      countSpan.innerText = count + 1;
+    }
+  }
+
+  function sharePost() {
+    const toast = document.getElementById('toast');
+    toast.className = "toast show";
+    setTimeout(function() {
+      toast.className = "toast";
+    }, 2500);
+  }
+
+  /* Canvas Sunset Fog Particle Effect */
+  const canvas = document.getElementById('mist-canvas');
+  const ctx = canvas.getContext('2d');
+
+  function resizeCanvas() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+  }
+  window.addEventListener('resize', resizeCanvas);
+  resizeCanvas();
+
+  const mistParticles = [];
+  const totalParticles = 20;
+
+  class MistParticle {
+    constructor() { this.init(); }
+
+    init() {
+      this.x = Math.random() * canvas.width;
+      this.y = Math.random() * canvas.height;
+      this.radius = Math.random() * 140 + 90;
+      this.vx = (Math.random() - 0.5) * 0.3;
+      this.vy = -Math.random() * 0.2 - 0.05;
+      this.alpha = 0;
+      this.maxAlpha = Math.random() * 0.2 + 0.05;
+      this.fadeIn = true;
+    }
+
+    update() {
+      this.x += this.vx;
+      this.y += this.vy;
+
+      if (this.fadeIn) {
+        this.alpha += 0.002;
+        if (this.alpha >= this.maxAlpha) this.fadeIn = false;
+      } else {
+        this.alpha -= 0.001;
+        if (this.alpha <= 0) this.init();
+      }
+
+      if (this.y < -this.radius || this.x < -this.radius || this.x > canvas.width + this.radius) {
+        this.init();
+        this.y = canvas.height + this.radius;
+      }
+    }
+
+    draw() {
+      ctx.save();
+      let gradient = ctx.createRadialGradient(this.x, this.y, 0, this.x, this.y, this.radius);
+      gradient.addColorStop(0, `rgba(255, 117, 140, ${this.alpha})`);
+      gradient.addColorStop(0.6, `rgba(255, 126, 179, ${this.alpha * 0.4})`);
+      gradient.addColorStop(1, 'rgba(0, 0, 0, 0)');
+
+      ctx.fillStyle = gradient;
+      ctx.beginPath();
+      ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.restore();
+    }
+  }
+
+  for (let i = 0; i < totalParticles; i++) {
+    mistParticles.push(new MistParticle());
+  }
+
+  function animate() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    mistParticles.forEach(particle => {
+      particle.update();
+      particle.draw();
+    });
+    requestAnimationFrame(animate);
+  }
+
+  animate();
+</script>
+
+</body>
+</html>
