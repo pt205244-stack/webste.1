@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Surin Unlocked - มหัศจรรย์เมืองช้าง & Cyber Culture</title>
+<link href="https://fonts.googleapis.com/css2?family=Prompt:ital,wght@0,300;0,400;0,600;0,800;1,800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+  :root { 
+    --primary-color: #a855f7;    /* Neon Purple */
+    --primary-glow: #d8b4fe;
+    --accent-cyan: #06b6d4;     /* Cyber Cyan */
+    --accent-pink: #ec4899;     /* Hot Pink */
+    --bg-dark: #0a0b10;         /* Deep Space Dark */
+    --bg-card: rgba(22, 24, 38, 0.7);
+    --text-main: #f8fafc;
+    --text-muted: #94a3b8;
+    --border-glow: rgba(168, 85, 247, 0.3);
+    --radius-lg: 20px;
+    --radius-sm: 12px;
+    --transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+  
+  * { box-sizing: border-box; }
+
+  body { 
+    font-family: 'Prompt', sans-serif; 
+    background-color: var(--bg-dark); 
+    color: var(--text-main); 
+    margin: 0; 
+    line-height: 1.7; 
+    background-image: 
+      radial-gradient(circle at 10% 20%, rgba(168, 85, 247, 0.18) 0%, transparent 40%),
+      radial-gradient(circle at 90% 80%, rgba(6, 182, 212, 0.15) 0%, transparent 40%),
+      radial-gradient(circle at 50% 50%, rgba(236, 72, 153, 0.08) 0%, transparent 60%);
+    background-attachment: fixed;
+    overflow-x: hidden;
+  }
+
+  /* Custom Scrollbar */
+  ::-webkit-scrollbar { width: 8px; }
+  ::-webkit-scrollbar-track { background: var(--bg-dark); }
+  ::-webkit-scrollbar-thumb { background: var(--primary-color); border-radius: 10px; }
+
+  /* Hero Section */
+  .hero {
+    height: 60vh; 
+    background: linear-gradient(180deg, rgba(10, 11, 16, 0.4) 0%, rgba(10, 11, 16, 0.95) 100%), 
+                url('https://images.unsplash.com/photo-1557050543-4d5f4e07ef46?q=80&w=1600&auto=format&fit=crop'); 
+    background-size: cover; 
+    background-position: center; 
+    display: flex; 
+    flex-direction: column;
+    align-items: center; 
+    justify-content: center; 
+    text-align: center;
+    padding: 20px;
+    position: relative;
+  }
+
+  .live-badge {
+    background: rgba(239, 68, 68, 0.15);
+    border: 1px solid #ef4444;
+    color: #f87171;
+    padding: 6px 18px;
+    border-radius: 30px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    backdrop-filter: blur(8px);
+    box-shadow: 0 0 15px rgba(239, 68, 68, 0.4);
+    animation: pulse 2s infinite;
+    margin-bottom: 15px;
+  }
+
+  @keyframes pulse {
+    0%, 100% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.05); opacity: 0.7; }
+  }
+  
+  .hero h1 { 
+  font-size: 3.5rem; 
+  margin: 0; 
+  font-weight: 800; 
+  background: linear-gradient(135deg, #ffffff 30%, #C084FC 70%, #2DD4BF 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 0 20px rgba(168, 85, 247, 0.4));
+  letter-spacing: -1px;
+}
+
+  .hero p {
+    font-size: 1.2rem;
+    max-width: 650px;
+    font-weight: 300;
+    color: var(--text-muted);
+    margin-top: 10px;
+  }
+
+  /* Sticky Cyber Navbar */
+  .navbar-container {
+    position: sticky;
+    top: 15px;
+    z-index: 100;
+    padding: 0 20px;
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+
+  .navbar {
+    background: rgba(22, 24, 38, 0.75);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    padding: 10px 15px;
+    border-radius: 50px;
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), inset 0 0 15px rgba(255, 255, 255, 0.05);
+  }
+
+  .navbar a {
+    color: var(--text-main);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: var(--transition);
+    padding: 8px 18px;
+    border-radius: 30px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .navbar a:hover { 
+    background: linear-gradient(135deg, var(--primary-color), var(--accent-cyan));
+    color: #fff; 
+    box-shadow: 0 0 20px rgba(168, 85, 247, 0.6);
+    transform: translateY(-2px);
+  }
+
+  .navbar a i { color: var(--accent-cyan); transition: var(--transition); }
+  .navbar a:hover i { color: #fff; }
+
+  /* Container & Section Titles */
+  .container { max-width: 1200px; margin: 40px auto; padding: 0 20px; }
+  
+  .section-title {
+    text-align: center;
+    font-size: 2.2rem;
+    color: var(--text-main);
+    margin-bottom: 40px;
+    font-weight: 800;
+    position: relative;
+  }
+
+ .section-title span {
+  background: linear-gradient(90deg, #A855F7, #EC4899, #06B6D4);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+  /* Grid Layout & Cards */
+  .main-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+    gap: 30px;
+    margin-bottom: 70px;
+  }
+
+  .card {
+    background: var(--bg-card);
+    backdrop-filter: blur(12px);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    transition: var(--transition);
+    border: 1px solid var(--border-glow);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .card.clickable { cursor: pointer; }
+
+  .card:hover { 
+    transform: translateY(-10px) scale(1.02);
+    border-color: var(--accent-cyan);
+    box-shadow: 0 0 30px rgba(6, 182, 212, 0.4), 0 0 10px rgba(168, 85, 247, 0.3);
+  }
+
+  .card-img-wrapper {
+    width: 100%;
+    height: 220px;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .card:hover img { transform: scale(1.12) rotate(1deg); }
+
+  /* Card Badges */
+  .card-badge {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: rgba(10, 11, 16, 0.75);
+    border: 1px solid var(--accent-cyan);
+    color: var(--accent-cyan);
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    backdrop-filter: blur(6px);
+  }
+
+  .card-content { padding: 22px; flex-grow: 1; display: flex; flex-direction: column; }
+  
+  .card h3 { 
+    margin: 0 0 10px 0; 
+    color: #fff; 
+    font-size: 1.25rem; 
+    font-weight: 700; 
+    display: flex; 
+    align-items: center; 
+    gap: 10px; 
+  }
+
+  .card h3 i { 
+    color: var(--accent-pink); 
+    background: rgba(236, 72, 153, 0.15);
+    padding: 8px;
+    border-radius: 10px;
+    font-size: 1rem;
+  }
+
+  .card p { font-size: 0.92rem; margin: 0; color: var(--text-muted); line-height: 1.6; }
+
+  /* Cyber Modals */
+  .modal { 
+    display: none; 
+    position: fixed; 
+    z-index: 1000; 
+    left: 0; 
+    top: 0; 
+    width: 100%; 
+    height: 100%; 
+    background: rgba(5, 5, 12, 0.85); 
+    padding: 20px; 
+    backdrop-filter: blur(12px); 
+    overflow-y: auto;
+  }
+  
+  .modal-box { 
+    background: #121420; 
+    max-width: 550px; 
+    margin: 8% auto; 
+    padding: 35px; 
+    border-radius: 24px; 
+    color: var(--text-main); 
+    position: relative; 
+    border: 1px solid var(--primary-color);
+    box-shadow: 0 0 40px rgba(168, 85, 247, 0.5); 
+    animation: modalSlide 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+
+  @keyframes modalSlide {
+    from { transform: translateY(30px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+  }
+
+  .close-btn { 
+    position: absolute; 
+    top: 20px; 
+    right: 20px; 
+    font-size: 18px; 
+    cursor: pointer; 
+    color: var(--text-muted); 
+    border: 1px solid var(--border-glow); 
+    background: rgba(255, 255, 255, 0.05); 
+    width: 38px; 
+    height: 38px; 
+    border-radius: 50%; 
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    transition: var(--transition); 
+  }
+
+  .close-btn:hover { 
+    background: var(--accent-pink); 
+    color: #fff; 
+    border-color: var(--accent-pink);
+    transform: rotate(90deg);
+  }
+
+  /* Neon Footer */
+  .footer-container {
+    background: rgba(10, 11, 16, 0.95);
+    padding: 60px 20px 30px;
+    color: white;
+    text-align: center;
+    margin-top: 80px;
+    border-top: 1px solid var(--border-glow);
+    position: relative;
+  }
+
+.footer-title {
+  font-size: 1.5rem;
+  margin-bottom: 30px;
+  font-weight: 700;
+  background: linear-gradient(90deg, #A855F7, #06B6D4);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+  .contact-grid {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .contact-btn {
+    background: rgba(255, 255, 255, 0.03);
+    padding: 12px 26px;
+    border-radius: 30px;
+    text-decoration: none;
+    color: white;
+    transition: var(--transition);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 0.95rem;
+    font-weight: 500;
+    border: 1px solid var(--border-glow);
+  }
+
+  .contact-btn:hover {
+    background: linear-gradient(135deg, var(--primary-color), var(--accent-pink));
+    border-color: transparent;
+    box-shadow: 0 0 25px rgba(168, 85, 247, 0.6);
+    transform: translateY(-4px);
+  }
+
+  .contact-btn i { color: var(--accent-cyan); font-size: 1.1rem; }
+  .contact-btn:hover i { color: #fff; }
+
+  @media (max-width: 768px) { 
+    .hero h1 { font-size: 2.5rem; }
+    .navbar-container { padding: 0 10px; }
+    .navbar { flex-wrap: wrap; border-radius: 20px; }
+    .navbar a { padding: 6px 12px; font-size: 0.82rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Header / Hero Section -->
+<header class="hero">
+  <div class="live-badge">🔴 SURIN LIVE VIBES</div>
+  <h1>SURIN UNLOCKED</h1>
+  <p>ปักหมุดเมืองช้าง สัมผัสสตรีทฟู้ด วัฒนธรรมสุดคูล และพิกัดเช็คอินสไตล์ Cyber-Isan</p>
+</header>
+
+<!-- Sticky Navigation Bar -->
+<div class="navbar-container">
+  <nav class="navbar">
+    <a href="index.html"><i class="fas fa-bolt"></i> หน้าแรก</a>
+    <a href="teepak-1.html"><i class="fas fa-bed"></i> ที่พักสุดชิค</a>
+    <a href="food-1.html"><i class="fas fa-fire"></i> เมนูเด็ด</a>
+    <a href="travel-1.html"><i class="fas fa-compass"></i> พิกัดเที่ยว</a>
+    <a href="contact-2.html"><i class="fas fa-paper-plane"></i> คอนแทกต์</a>
+  </nav>
+</div>
+
+<div class="container">
+
+  <!-- 1. หมวดสถานที่ท่องเที่ยว -->
+  <section id="attractions">
+    <h2 class="section-title"><span>CHECK-IN SPOTS</span> พิกัดต้องวาร์ป</h2>
+    <div class="main-grid">
+      
+      <article class="card clickable" onclick="openModal('modal1')">
+        <div class="card-img-wrapper">
+          <span class="card-badge">#MustVisit</span>
+          <img src="d:\อรปรียา นาคำสี\สร้างเว็ปไซต์\images.jpg" alt="ปราสาทศีขรภูมิ">
+        </div>
+        <div class="card-content">
+          <h3>ปราสาทศีขรภูมิ</h3>
+          <p>ปราสาทขอมสุดคลาสสิก ถ่ายรูปมุมไหนก็ปังด้วยภาพสลักนางอัปสราหินทรายสุดสมบูรณ์</p>
+        </div>
+      </article>
+
+      <article class="card clickable" onclick="openModal('modal2')">
+        <div class="card-img-wrapper">
+          <span class="card-badge">Trending 🔥</span>
+          <img src="d:\อรปรียา นาคำสี\สร้างเว็ปไซต์\images (34).jpg" alt="หมู่บ้านช้าง">
+        </div>
+        <div class="card-content">
+          <h3>หมู่บ้านช้าง บ้านตากลาง</h3>
+          <p>สัมผัส Vibe ความน่ารักและวิถีชีวิตสุดอบอุ่นระหว่างคนกับน้องช้างแบบใกล้ชิด</p>
+        </div>
+      </article>
+
+      <article class="card clickable" onclick="openModal('modal3')">
+        <div class="card-img-wrapper">
+          <span class="card-badge">#Heritage</span>
+          <img src="d:\อรปรียา นาคำสี\สร้างเว็ปไซต์\images (1).jpg" alt="ปราสาทหินบ้านพลวง">
+        </div>
+        <div class="card-content">
+          <h3>ปราสาทหินบ้านพลวง</h3>
+          <p>โบราณสถานศิลปะแบบบาปวน งานแกะสลักหินสุดมินิมอลแต่ทรงคุณค่า</p>
+        </div>
+      </article>
+
+      <article class="card clickable" onclick="openModal('modal4')">
+        <div class="card-img-wrapper">
+          <span class="card-badge">World Class 👑</span>
+          <img src="d:\อรปรียา นาคำสี\สร้างเว็ปไซต์\images (30).jpg" alt="หมู่บ้านผ้าไหม">
+        </div>
+        <div class="card-content">
+          <h3>หมู่บ้านผ้าไหมบ้านท่าสว่าง</h3>
+          <p>ชมการทอผ้าไหมยกทองโบราณ ภูมิปัญญาหัตถกรรมระดับตำนานระดับโลก</p>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- 2. หมวดที่พักแนะนำ -->
+  <section id="accommodation">
+    <h2 class="section-title"><span>CHILL OUT STAYS</span> ที่พักเทสดี</h2>
+    <div class="main-grid">
+      
+      <div class="card">
+        <div class="card-img-wrapper">
+          <img src="d:\อรปรียา นาคำสี\สร้างเว็ปไซต์\images (44).jpg" alt="โรงแรมในเมือง">
+        </div>
+        <div class="card-content">
+          <h3><i class="fas fa-city"></i> City Hotel Vibes</h3>
+          <p>โรงแรมใจกลางเมือง สไตล์โมเดิร์น เดินทางง่าย ใกล้สตรีทฟู้ดและสถานีรถไฟ</p>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-img-wrapper">
+          <img src="d:\อรปรียา นาคำสี\สร้างเว็ปไซต์\images (41).jpg" alt="โฮมสเตย์วิถีชุมชน">
+        </div>
+        <div class="card-content">
+          <h3><i class="fas fa-leaf"></i> Local Homestay</h3>
+          <p>พักผ่อนสโลว์ไลฟ์ สัมผัสฟีลธรรมชาติ และเรียนรู้วิถีชีวิตชาวบ้านแบบเป็นกันเอง</p>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-img-wrapper">
+          <img src="d:\อรปรียา นาคำสี\สร้างเว็ปไซต์\images (42).jpg" alt="รีสอร์ตธรรมชาติ">
+        </div>
+        <div class="card-content">
+          <h3><i class="fas fa-mountain"></i> Nature Resort</h3>
+          <p>รีสอร์ตบรรยากาศสุดกรีน หลบความวุ่นวายมาฮีลใจท่ามกลางความสงบ</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- 3. หมวดอาหารขึ้นชื่อ -->
+  <section id="food">
+    <h2 class="section-title"><span>LOCAL BITES</span> เมนูเด็ดต้องลอง</h2>
+    <div class="main-grid">
+      
+      <div class="card">
+        <div class="card-img-wrapper">
+          <span class="card-badge">Must Try 😋</span>
+          <img src="d:\อรปรียา นาคำสี\สร้างเว็ปไซต์\images (37).jpg" alt="กุนเชียงหมูแผ่น">
+        </div>
+        <div class="card-content">
+          <h3><i class="fas fa-drumstick-bite"></i> กุนเชียง & หมูแผ่นสุรินทร์</h3>
+          <p>ของฝากตำนานความอร่อย รสชาติเข้มข้น เนื้อแน่น ซื้อติดมือไปใครก็เลิฟ</p>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-img-wrapper">
+          <span class="card-badge">Top Export 🌾</span>
+          <img src="d:\อรปรียา นาคำสี\สร้างเว็ปไซต์\images (6).jpg" alt="ข้าวหอมมะลิ">
+        </div>
+        <div class="card-content">
+          <h3><i class="fas fa-seedling"></i> ข้าวหอมมะลิทุ่งกุลา</h3>
+          <p>ข้าวหอมมะลิขึ้นชื่อ หอม นุ่ม นุ่มลิ้น เอกลักษณ์อันดับหนึ่งที่แมสไปทั่วโลก</p>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-img-wrapper">
+          <span class="card-badge">Spicy 🔥</span>
+          <img src="d:\อรปรียา นาคำสี\สร้างเว็ปไซต์\images (19).jpg" alt="อาหารพื้นบ้าน">
+        </div>
+        <div class="card-content">
+          <h3><i class="fas fa-pepper-hot"></i> แซ่บอีสานใต้</h3>
+          <p>จัดจ้านทุกจาน! ไก่ย่าง แกงอ่อม ส้มตำรสเด็ด รสชาติออริจินัลแท้ๆ</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- 4. หมวดเทศกาลประจำปี -->
+  <section id="festivals">
+    <h2 class="section-title"><span>FESTIVAL EVENTS</span> เทศกาลสุดปัง</h2>
+    <div class="main-grid">
+      
+      <div class="card">
+        <div class="card-img-wrapper">
+          <img src="d:\อรปรียา นาคำสี\สร้างเว็ปไซต์\images (3).jpg" alt="งานแสดงช้างสุรินทร์">
+        </div>
+        <div class="card-content">
+          <h3><i class="fas fa-icons"></i> งานแสดงช้างสุรินทร์</h3>
+          <p><strong>🗓️ พฤศจิกายน</strong><br>อีเวนต์ระดับโลก ชมพาเหรดต้อนรับช้าง และโต๊ะจีนช้างสุดยิ่งใหญ่ที่ต้องมาดูด้วยตาตัวเอง</p>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-img-wrapper">
+          <img src="d:\อรปรียา นาคำสี\สร้างเว็ปไซต์\images (28).jpg" alt="ประเพณีแซนโฎนตา">
+        </div>
+        <div class="card-content">
+          <h3><i class="fas fa-heart"></i> ประเพณีแซนโฎนตา</h3>
+          <p><strong>🗓️ ตุลาคม</strong><br>วันสารทเขมร รำลึกและเซ่นไหว้บรรพบุรุษ สะท้อนความกตัญญูและวัฒนธรรมอันอบอุ่น</p>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-img-wrapper">
+          <img src="d:\อรปรียา นาคำสี\สร้างเว็ปไซต์\images (39).jpg" alt="ประเพณีขึ้นเขาสวาย">
+        </div>
+        <div class="card-content">
+          <h3><i class="fas fa-sun"></i> ประเพณีขึ้นเขาสวาย</h3>
+          <p><strong>🗓️ มีนาคม</strong><br>ร่วมแสวงบุญกราบไหว้สิ่งศักดิ์สิทธิ์ 9 ประการ บนยอดเขาพนมสวาย เพิ่ม Energy บวก!</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+</div>
+
+<!-- Modals -->
+<div id="modal1" class="modal">
+  <div class="modal-box">
+    <button class="close-btn" onclick="closeModal('modal1')">&times;</button>
+    <h3 style="color:var(--primary-glow); margin-top:0; font-size: 1.5rem;">ปราสาทศีขรภูมิ</h3>
+    <p>ปราสาทขอมโบราณอายุกว่าพันปี โดดเด่นด้วยปรางค์จัตโตรูปแบบขอมโบราณ สวยงามด้วยภาพสลักนางอัปสราที่แกะสลักบนหินทรายอย่างประณีต มุมถ่ายรูปสวยสไตล์ฮิปสเตอร์!</p>
+  </div>
+</div>
+
+<div id="modal2" class="modal">
+  <div class="modal-box">
+    <button class="close-btn" onclick="closeModal('modal2')">&times;</button>
+    <h3 style="color:var(--primary-glow); margin-top:0; font-size: 1.5rem;">หมู่บ้านช้าง บ้านตากลาง</h3>
+    <p>ศูนย์คชศึกษาที่ใหญ่ที่สุดในเอเชีย สัมผัสความผูกพันระหว่างชาวกูย (กวย) กับช้าง เลี้ยงดูเหมือนสมาชิกในครอบครัว ไม่ใช่แค่สัตว์เลี้ยง!</p>
+  </div>
+</div>
+
+<div id="modal3" class="modal">
+  <div class="modal-box">
+    <button class="close-btn" onclick="closeModal('modal3')">&times;</button>
+    <h3 style="color:var(--primary-glow); margin-top:0; font-size: 1.5rem;">ปราสาทหินบ้านพลวง</h3>
+    <p>ปราสาทหินขนาดเล็กแต่ดีเทลแน่นมาก สร้างขึ้นเพื่อถวายแด่องค์พระอิศวร มีลวดลายกลีบบัวและเทวดารักษาทิศอันเป็นเอกลักษณ์</p>
+  </div>
+</div>
+
+<div id="modal4" class="modal">
+  <div class="modal-box">
+    <button class="close-btn" onclick="closeModal('modal4')">&times;</button>
+    <h3 style="color:var(--primary-glow); margin-top:0; font-size: 1.5rem;">หมู่บ้านผ้าไหมบ้านท่าสว่าง</h3>
+    <p>แหล่งเรียนรู้ภูมิปัญญาการทอผ้าไหมยกทองโบราณที่ได้รับการยอมรับระดับชาติและนานาชาติ ประณีตระดับ Hi-End ถ่ายรูปใส่ผ้าไทยคูลๆ ได้ที่นี่</p>
+  </div>
+</div>
+
+<!-- Footer Section -->
+<footer id="contact" class="footer-container">
+  <p class="footer-title">GET IN TOUCH / CONNECT WITH US</p>
+  <div class="contact-grid">
+    <a href="tel:0982059162" class="contact-btn">
+      <i class="fas fa-phone-alt"></i>
+      <span>098-205-9162</span>
+    </a>
+    <a href="https://www.instagram.com/kwa.exe__" target="_blank" class="contact-btn">
+      <i class="fab fa-instagram"></i>
+      <span>kwa.exe__</span>
+    </a>
+    <a href="https://www.facebook.com/" target="_blank" class="contact-btn">
+      <i class="fab fa-facebook"></i>
+      <span>Zee Opy</span>
+    </a>
+    <a href="https://line.me/ti/p/~@kumi.ko721" target="_blank" class="contact-btn">
+      <i class="fab fa-line"></i>
+      <span>@kumi.ko721</span>
+    </a>
+  </div>
+  <p style="margin-top: 40px; color: var(--text-muted); font-size: 0.85rem;">&copy; 2026 SURIN UNLOCKED. All Rights Reserved. Designed for Next-Gen Explorers.</p>
+</footer>
+
+<!-- JavaScript -->
+<script>
+  function openModal(id) { 
+    document.getElementById(id).style.display = "block"; 
+  }
+  function closeModal(id) { 
+    document.getElementById(id).style.display = "none"; 
+  }
+  window.onclick = function(event) { 
+    if (event.target.classList.contains('modal')) { 
+      event.target.style.display = "none"; 
+    } 
+  }
+</script>
+
+</body>
+</html>>

@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CONTACT US — SURIN TRAVEL ⚡</title>
+<link href="https://fonts.googleapis.com/css2?family=Prompt:ital,wght@0,300;0,400;0,600;0,800;1,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+<style>
+  :root { 
+    --neon-green: #ccff00;      /* Acid/Cyber Lime Green */
+    --neon-pink: #ff007f;       /* Electric Pink */
+    --cyber-purple: #8b5cf6;    /* Vibrant Purple */
+    --bg-dark: #0a0a0c;         /* Ultra Dark Background */
+    --card-bg: rgba(22, 22, 30, 0.75);
+    --card-border: rgba(204, 255, 0, 0.25);
+    --text-light: #f3f4f6;
+    --text-dim: #a1a1aa;
+    --glow-green: 0 0 20px rgba(204, 255, 0, 0.4);
+    --glow-pink: 0 0 20px rgba(255, 0, 127, 0.4);
+    --transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  }
+  
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body { 
+    font-family: 'Prompt', sans-serif; 
+    background-color: var(--bg-dark); 
+    color: var(--text-light); 
+    line-height: 1.6; 
+    position: relative;
+    overflow-x: hidden;
+  }
+
+  /* Cyber Grid Background Effect */
+  body::before {
+    content: "";
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background-image: 
+      linear-gradient(rgba(204, 255, 0, 0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(204, 255, 0, 0.03) 1px, transparent 1px);
+    background-size: 40px 40px;
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  /* Floating Neon Particles */
+  .particle-container {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100vh;
+    pointer-events: none;
+    z-index: 0;
+  }
+  .particle {
+    position: absolute;
+    bottom: -20px;
+    background: var(--neon-green);
+    border-radius: 50%;
+    box-shadow: var(--glow-green);
+    animation: floatUp linear infinite;
+  }
+  @keyframes floatUp {
+    0% { transform: translateY(0) scale(1); opacity: 0; }
+    20% { opacity: 0.8; }
+    80% { opacity: 0.8; }
+    100% { transform: translateY(-105vh) scale(0.3); opacity: 0; }
+  }
+
+  /* Gen-Z Glitchy / Cyber Navbar */
+  .navbar {
+    background: rgba(10, 10, 12, 0.85);
+    backdrop-filter: blur(16px);
+    padding: 16px 20px;
+    text-align: center;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+
+  .navbar a {
+    color: var(--text-dim);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.88rem;
+    padding: 8px 18px;
+    border-radius: 30px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: var(--transition);
+    border: 1px solid transparent;
+  }
+
+  .navbar a:hover {
+    color: var(--neon-green);
+    border-color: var(--neon-green);
+    box-shadow: var(--glow-green);
+    transform: translateY(-2px);
+  }
+
+  .navbar a.active {
+    background: var(--neon-green);
+    color: #000;
+    font-weight: 700;
+    box-shadow: var(--glow-green);
+  }
+
+  /* Container */
+  .container { 
+    max-width: 750px; 
+    margin: 50px auto; 
+    padding: 0 20px; 
+    position: relative;
+    z-index: 1;
+  }
+
+  /* Page Header Header */
+  .page-header {
+    text-align: center;
+    margin-bottom: 45px;
+  }
+
+  .page-header .badge {
+    display: inline-block;
+    background: rgba(255, 0, 127, 0.15);
+    color: var(--neon-pink);
+    border: 1px solid var(--neon-pink);
+    padding: 4px 16px;
+    border-radius: 50px;
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 15px;
+    box-shadow: var(--glow-pink);
+  }
+
+  .page-header h1 {
+  color: #fff;
+  font-size: 2.8rem;
+  font-weight: 800;
+  line-height: 1.1;
+  margin-bottom: 12px;
+  background: linear-gradient(135deg, #ffffff 30%, #00FF66 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+  .page-header p {
+    color: var(--text-dim);
+    font-size: 1rem;
+    font-weight: 300;
+  }
+
+  /* Creator Card - Cyber Aesthetic */
+  .creator-card {
+    background: var(--card-bg);
+    backdrop-filter: blur(20px);
+    border-radius: 24px;
+    padding: 32px;
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    margin-bottom: 40px;
+    border: 1px solid var(--card-border);
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+    transition: var(--transition);
+  }
+
+  .creator-card::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; width: 4px; height: 100%;
+    background: linear-gradient(180deg, var(--neon-green), var(--neon-pink));
+  }
+
+  .creator-card:hover {
+    border-color: var(--neon-green);
+    box-shadow: var(--glow-green);
+    transform: translateY(-4px);
+  }
+
+  .avatar-wrapper {
+    position: relative;
+    flex-shrink: 0;
+  }
+
+  .creator-avatar {
+    width: 120px;
+    height: 120px;
+    border-radius: 20px;
+    object-fit: cover;
+    border: 2px solid var(--neon-green);
+    box-shadow: var(--glow-green);
+  }
+
+  .avatar-status {
+    position: absolute;
+    bottom: -6px;
+    right: -6px;
+    background: var(--neon-pink);
+    color: #fff;
+    font-size: 0.65rem;
+    font-weight: 800;
+    padding: 3px 8px;
+    border-radius: 12px;
+    text-transform: uppercase;
+    box-shadow: var(--glow-pink);
+  }
+
+  .creator-info h3 {
+    margin-bottom: 6px;
+    color: #fff;
+    font-size: 1.5rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .creator-info .role {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(204, 255, 0, 0.1);
+    color: var(--neon-green);
+    padding: 4px 12px;
+    border-radius: 8px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    border: 1px solid rgba(204, 255, 0, 0.3);
+    margin-bottom: 12px;
+  }
+
+  .creator-info p {
+    color: var(--text-dim);
+    font-size: 0.92rem;
+    font-weight: 300;
+  }
+
+  /* Section Title */
+  .contact-section-title {
+    color: #fff;
+    font-size: 1.3rem;
+    margin-bottom: 20px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    letter-spacing: 0.5px;
+  }
+  .contact-section-title i {
+    color: var(--neon-pink);
+  }
+
+  /* Gen Z Contact Grid */
+  .contact-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 18px;
+  }
+
+  .contact-btn {
+    background: var(--card-bg);
+    backdrop-filter: blur(12px);
+    padding: 18px 22px;
+    border-radius: 18px;
+    text-decoration: none;
+    color: var(--text-light);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 1rem;
+    font-weight: 600;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    transition: var(--transition);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .contact-btn-left {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+
+  .contact-icon {
+    width: 42px;
+    height: 42px;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.05);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    color: var(--neon-green);
+    transition: var(--transition);
+  }
+
+  .contact-btn:hover {
+    background: rgba(30, 30, 42, 0.9);
+    border-color: var(--neon-green);
+    transform: translateY(-4px) scale(1.02);
+    box-shadow: var(--glow-green);
+    color: #fff;
+  }
+
+  .contact-btn:hover .contact-icon {
+    background: var(--neon-green);
+    color: #000;
+  }
+
+  .arrow-icon {
+    color: var(--text-dim);
+    font-size: 0.85rem;
+    transition: var(--transition);
+  }
+
+  .contact-btn:hover .arrow-icon {
+    color: var(--neon-pink);
+    transform: translateX(4px);
+  }
+
+  /* Custom Color Vibes for Hover */
+  .contact-btn.ig:hover { border-color: var(--neon-pink); box-shadow: var(--glow-pink); }
+  .contact-btn.ig:hover .contact-icon { background: var(--neon-pink); color: #fff; }
+  
+  .contact-btn.fb:hover { border-color: #1877f2; box-shadow: 0 0 20px rgba(24, 119, 242, 0.4); }
+  .contact-btn.fb:hover .contact-icon { background: #1877f2; color: #fff; }
+
+  .contact-btn.line:hover { border-color: #00b900; box-shadow: 0 0 20px rgba(0, 185, 0, 0.4); }
+  .contact-btn.line:hover .contact-icon { background: #00b900; color: #fff; }
+
+  /* Footer */
+  .footer-container {
+    background: rgba(10, 10, 12, 0.95);
+    padding: 35px 20px;
+    color: var(--text-dim);
+    text-align: center;
+    margin-top: 70px;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    font-size: 0.88rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  .footer-container span {
+    color: var(--neon-pink);
+  }
+
+  /* Responsive Design */
+  @media (max-width: 650px) {
+    .creator-card {
+      flex-direction: column;
+      text-align: center;
+      padding: 26px 20px;
+    }
+    .creator-card::before {
+      width: 100%; height: 4px;
+    }
+    .page-header h1 { font-size: 2.2rem; }
+    .navbar a { padding: 6px 14px; font-size: 0.82rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Particles Background -->
+<div class="particle-container" id="particleContainer"></div>
+
+<!-- Navigation Bar -->
+<nav class="navbar">
+  <a href="index.html"><i class="fas fa-bolt"></i> หน้าแรก</a>
+  <a href="teepak-1.html"><i class="fas fa-bed"></i> ที่พัก</a>
+  <a href="food-1.html"><i class="fas fa-utensils"></i> อาหาร</a>
+  <a href="travel-1.html"><i class="fas fa-compass"></i> สถานที่ท่องเที่ยว</a>
+  <a href="contact-2.html" class="active"><i class="fas fa-paper-plane"></i> ติดต่อเรา</a>
+</nav>
+
+<div class="container">
+
+  <!-- Header Section -->
+  <div class="page-header">
+    <span class="badge">✦ Let's Connect ✦</span>
+    <h1>HIT US UP! ⚡</h1>
+    <p>อยากสอบถามแพลนเที่ยว หรือทักมาเม้าท์มอยเรื่องเมืองสุรินทร์ กดทักมาได้เลย!</p>
+  </div>
+
+  <!-- Creator Card -->
+  <div class="creator-card">
+    <div class="avatar-wrapper">
+      <img src="d:\อรปรียา นาคำสี\สร้างเว็ปไซต์\765198179_947250554440282_1041620274732947072_n.jpg" alt="Creator Avatar" class="creator-avatar">
+      <span class="avatar-status">ONLINE</span>
+    </div>
+    <div class="creator-info">
+      <h3>นางสาวอรปรียา นาคำสี <i class="fas fa-check-circle" style="color: var(--neon-green); font-size: 1.1rem;"></i></h3>
+      <div class="role"><i class="fas fa-code"></i> IT Student @ วิทยาลัยเทคนิคปากช่อง (ปวช.1/1)</div>
+      <p>ผู้จัดทำเว็บไซค์ทัวร์สุรินทร์ฉบับ Gen Z ตั้งใจทำแบบสุดปัง เพื่อให้ทุกคนมาเที่ยวสุรินทร์แล้วอินกว่าเดิม ฝากติดตามผลงานด้วยน้าา ✨💅</p>
+    </div>
+  </div>
+
+  <!-- Contact Grid -->
+  <h2 class="contact-section-title"><i class="fas fa-fire"></i> DIRECT CONTACT</h2>
+  
+  <div class="contact-grid">
+    <a href="tel:0982059162" class="contact-btn">
+      <div class="contact-btn-left">
+        <div class="contact-icon"><i class="fas fa-phone-alt"></i></div>
+        <span>098-205-9162</span>
+      </div>
+      <i class="fas fa-arrow-right arrow-icon"></i>
+    </a>
+    
+    <a href="https://www.instagram.com/kwa.exe__" target="_blank" class="contact-btn ig">
+      <div class="contact-btn-left">
+        <div class="contact-icon"><i class="fab fa-instagram"></i></div>
+        <span>kwa.exe__</span>
+      </div>
+      <i class="fas fa-arrow-right arrow-icon"></i>
+    </a>
+    
+    <a href="https://www.facebook.com/" target="_blank" class="contact-btn fb">
+      <div class="contact-btn-left">
+        <div class="contact-icon"><i class="fab fa-facebook-f"></i></div>
+        <span>Zee Opy</span>
+      </div>
+      <i class="fas fa-arrow-right arrow-icon"></i>
+    </a>
+    
+    <a href="https://line.me/ti/p/~@kumi.ko721" target="_blank" class="contact-btn line">
+      <div class="contact-btn-left">
+        <div class="contact-icon"><i class="fab fa-line"></i></div>
+        <span>@kumi.ko721</span>
+      </div>
+      <i class="fas fa-arrow-right arrow-icon"></i>
+    </a>
+  </div>
+
+</div>
+
+<!-- Footer -->
+<footer class="footer-container">
+  <p>&copy; 2026 SURIN TRAVEL VIBES. Crafted with <span>★</span> by Orapriya.</p>
+</footer>
+
+<script>
+  // Dynamic Floating Particles Generator
+  function createParticles() {
+    const container = document.getElementById('particleContainer');
+    const particleCount = 18;
+
+    for (let i = 0; i < particleCount; i++) {
+      const particle = document.createElement('div');
+      particle.classList.add('particle');
+      
+      const size = Math.random() * 6 + 3;
+      particle.style.width = `${size}px`;
+      particle.style.height = `${size}px`;
+      
+      particle.style.left = `${Math.random() * 100}%`;
+      particle.style.animationDuration = `${Math.random() * 6 + 6}s`;
+      particle.style.animationDelay = `${Math.random() * 5}s`;
+      
+      // Randomly assign green or pink glow to particles
+      if (Math.random() > 0.5) {
+        particle.style.background = 'var(--neon-pink)';
+        particle.style.boxShadow = 'var(--glow-pink)';
+      }
+
+      container.appendChild(particle);
+    }
+  }
+
+  document.addEventListener('DOMContentLoaded', createParticles);
+</script>
+
+</body>
+</html>
